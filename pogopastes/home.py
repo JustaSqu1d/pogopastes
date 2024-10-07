@@ -203,7 +203,10 @@ if (
         pokemon6_species, pokemon6_cp, pokemon6_shadow, pokemon6_fast_move, pokemon6_charge_move1,
         pokemon6_charge_move2)
 
-    url_string = "https://localhost:8701/team?id=" + pokemon1_hex + "-" + pokemon2_hex + "-" + pokemon3_hex + "-" + pokemon4_hex + "-" + pokemon5_hex + "-" + pokemon6_hex
+    hexes = [pokemon1_hex, pokemon2_hex, pokemon3_hex, pokemon4_hex, pokemon5_hex, pokemon6_hex]
+    hexes = sorted(hexes)
+
+    url_string = "https://pgpaste.squ1d.dev/team?id=" + "-".join(hexes)
     url_string = url_string.replace("0x", "")
 
     st.write("Share link:")
