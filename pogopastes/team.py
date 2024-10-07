@@ -60,7 +60,10 @@ def render_pokemon_images(st, poke_dict, left, right):
 team = st.query_params.get("id")
 
 if not team:
-    st.write("No team found.")
+    team_id = st.text_input("Team ID", key="team")
+
+    if team_id:
+        st.page_link(f"https://pgpaste.squ1d.dev/team?id={team_id}", label="View team", icon=":material/link:")
 
 else:
     st.title("Pokemon Team")
