@@ -11,8 +11,8 @@ if __name__ == "__main__":
     pokemon_gamemasters = requests.get(POKEMON_GAMEMASTERS_URL).json()
     moves_gamemasters = requests.get(MOVES_GAMEMASTERS_URL).json()
 
-    with open("gamedata/pokemon.json", "w") as f:
+    with open("pogopastes/gamedata/pokemon.json", "w") as f:
         json.dump(pokemon_gamemasters, f, indent=4)
 
-    with open("gamedata/moves.json", "w") as f:
+    with open("pogopastes/gamedata/moves.json", "w") as f:
         json.dump(moves_gamemasters, f, indent=4)
