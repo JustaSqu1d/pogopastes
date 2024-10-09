@@ -2,7 +2,7 @@ import json
 
 import streamlit as st
 
-from parser import convert_pokemon_hex_to_dictionary, format_pokemon_name, format_move_name
+from parser import convert_pokemon_hex_to_dictionary, format_pokemon_name, format_move_name, read_pokemon_data
 from images import get_image_asset
 
 
@@ -22,24 +22,22 @@ def render_pokemon(st, poke_dict):
         st.write(f"**{format_move_name(poke_dict['second_charged_move_name'])}**")
 
 
-def get_pokemon_image(pokemon_name, form_name):
-    with open("pogopastes/gamedata/pokemon.json") as f:
-        pokemon_data = json.load(f)
+def get_pokemon_image(pokemon_name, form_name=None):
+    pokemon_data = read_pokemon_data()
 
-    for pokemon in pokemon_data:
+    for pokemon in pokemon_data.values():
+        pokemon_info = pokemon
 
-        pokemon_json = pokemon_data[pokemon]
-
-        if pokemon_json["species"] == pokemon_name:
+        if pokemon_info["species"] == pokemon_name:
             if form_name:
-                if pokemon_json["name"] == form_name:
-                    showdown_id = pokemon_json["showdown_id"]
+                if pokemon_info["name"] == form_name:
+                    showdown_id = pokemon_info["showdown_id"]
                     return f"https://play.pokemonshowdown.com/sprites/gen5/{showdown_id}.png"
-                else:
-                    continue
+            else:
+                showdown_id = pokemon_info["showdown_id"]
+                return f"https://play.pokemonshowdown.com/sprites/gen5/{showdown_id}.png"
 
-            showdown_id = pokemon_json["showdown_id"]
-            return f"https://play.pokemonshowdown.com/sprites/gen5/{showdown_id}.png"
+    return None
 
 
 def render_pokemon_images(st, poke_dict, left, right):

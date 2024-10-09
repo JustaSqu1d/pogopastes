@@ -1,4 +1,6 @@
 import json
+import os
+
 
 def convert_pokemon_hex_to_dictionary(hex_string: str) -> dict:
     """
@@ -166,8 +168,6 @@ def convert_pokemon_to_hex(species_name, cp, shadow, fast_move, charge_move1, ch
     """
     pokemon_name, species_name = unformat_pokemon_name(species_name)
 
-    print(pokemon_name, species_name)
-
     pokemon_id = convert_pokemon_name_to_id(pokemon_name)
     form_id = convert_form_name_to_id(pokemon_id, species_name) if species_name else 0
     shadow_purified = convert_shadow_purified_to_id(shadow)
@@ -179,8 +179,6 @@ def convert_pokemon_to_hex(species_name, cp, shadow, fast_move, charge_move1, ch
     fast_move_id = convert_move_name_to_id(fast_move_name)
     first_charged_move_id = convert_move_name_to_id(first_charged_move_name)
     second_charged_move_id = convert_move_name_to_id(second_charged_move_name)
-
-    print(pokemon_id, form_id, shadow_purified, fast_move_id, first_charged_move_id, second_charged_move_id, cp)
 
     return convert_raw_pokemon_to_hex(pokemon_id, form_id, False, shadow_purified, fast_move_id, first_charged_move_id, second_charged_move_id, cp)
 
@@ -232,7 +230,8 @@ def read_pokemon_data() -> dict:
     -------
     dict
     """
-    with open("pogopastes/gamedata/pokemon.json", "r") as f:
+    path = os.path.dirname(__file__)
+    with open(path + "/gamedata/pokemon.json", "r") as f:
         return json.load(f)
 
 def read_moves_data() -> dict:
@@ -243,7 +242,8 @@ def read_moves_data() -> dict:
     -------
     dict
     """
-    with open("pogopastes/gamedata/moves.json", "r") as f:
+    path = os.path.dirname(__file__)
+    with open(path + "/gamedata/moves.json", "r") as f:
         return json.load(f)
 
 def get_pokemon_by_id(pokemon_id: int, form_id: int = -1) -> dict:
@@ -361,7 +361,7 @@ def format_move_name(move_name: str | None) -> str | None:
     elif move_name == "FUTURESIGHT":
         return "Future Sight"
     elif move_name == "SUPER_POWER":
-        return "Super Power"
+        return "Superpower"
     elif move_name == "AEROBLAST_PLUS_PLUS":
         return "Aeroblast++"
     elif move_name == "SACRED_FIRE_PLUS_PLUS":
@@ -370,6 +370,8 @@ def format_move_name(move_name: str | None) -> str | None:
         return "Aeroblast+"
     elif move_name == "SACRED_FIRE_PLUS":
         return "Sacred Fire+"
+    elif move_name == "MUD_SLAP_FAST":
+        return "Mud-Slap"
     else:
         return move_name.replace("_FAST", "").replace("_", " ").title()
 
@@ -399,12 +401,10 @@ def unformat_move_name(move_name: str) -> str:
     elif move_name == "Sacred Fire+":
         return "SACRED_FIRE_PLUS"
 
-    return move_name.replace(" ", "_").upper()
+    return move_name.replace(" ", "_").replace("-", "_").upper()
 
 if __name__ == "__main__":
     hex_string = convert_raw_pokemon_to_hex(493, 1, False, 0, 236, 31, 0, 1500)
-
-    print(hex_string)
 
     poke_dict = convert_pokemon_hex_to_dictionary(hex_string)
 

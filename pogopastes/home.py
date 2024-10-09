@@ -2,10 +2,8 @@ import json
 import os
 
 import streamlit as st
-
 from images import get_pokemon_image
-from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex
-
+from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex, convert_pokemon_hex_to_dictionary
 
 pokemon_species_list = []
 
@@ -19,9 +17,14 @@ with open(path + "/gamedata/pokemon.json", "r") as f:
 
 moves_list = []
 
+skip_ids = ["HYDRO_PUMP_BLASTOISE", "SCALD_BLASTOISE", "WATER_GUN_BLASTOISE"]
+
 with open(path + "/gamedata/moves.json", "r") as f:
     moves_gamemasters = json.load(f)
     for move in moves_gamemasters:
+        if move in skip_ids:
+            continue
+
         moves_list.append(format_move_name(moves_gamemasters[move]["uniqueId"]))
 
 moves_list = sorted(moves_list)
