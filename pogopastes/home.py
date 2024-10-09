@@ -3,7 +3,7 @@ import os
 
 import streamlit as st
 from images import get_pokemon_image
-from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex, convert_pokemon_hex_to_dictionary
+from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex, pokepaste_stringify
 
 pokemon_species_list = []
 
@@ -28,37 +28,6 @@ with open(path + "/gamedata/moves.json", "r") as f:
         moves_list.append(format_move_name(moves_gamemasters[move]["uniqueId"]))
 
 moves_list = sorted(moves_list)
-
-
-def pokepaste_stringify(poke_team_hex) -> str:
-    poke_team_dict = []
-
-    for poke_hex in poke_team_hex.split("-"):
-        poke_team_dict.append(convert_pokemon_hex_to_dictionary(poke_hex))
-
-    final_pokepaste_string = ""
-
-    for team_member in poke_team_dict:
-        regular_name = format_pokemon_name(team_member["pokemon_name"], team_member["form_name"])
-        pokepaste_compliant_name = regular_name.replace(" ", "-").replace("(","").replace(")","")
-
-        if team_member["shadow_purified"] == "Shadow":
-            pokepaste_compliant_name += "-Shadow"
-        elif team_member["shadow_purified"] == "Purified":
-            pokepaste_compliant_name += "-Purified"
-
-        if team_member["best_buddy"]:
-            pokepaste_compliant_name += " @ Best Buddy Ribbon"
-
-        combat_power = team_member["combat_power"]
-
-        fast_move = format_move_name(team_member["fast_move_name"])
-        first_charged_move = format_move_name(team_member["first_charged_move_name"])
-        second_charged_move = format_move_name(team_member["second_charged_move_name"])
-
-        final_pokepaste_string += f"{pokepaste_compliant_name}\nLevel: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n\n"
-
-    return final_pokepaste_string
 
 
 st.title("Create a team")
@@ -248,5 +217,5 @@ if (
     st.code(url_string, language="js")
 
     st.write("[Pokepaste](https://pokepast.es) format:")
-    st.code(pokepaste_stringify("-".join(hexes)), language="markdown")
+    st.code(pokepaste_stringify("-".join(hexes)), language="python")
 

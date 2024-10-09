@@ -403,6 +403,50 @@ def unformat_move_name(move_name: str) -> str:
 
     return move_name.replace(" ", "_").replace("-", "_").upper()
 
+
+def pokepaste_stringify(poke_team_hex) -> str:
+    """
+    Convert the hex string to a Pokepaste string.
+
+    Parameters
+    ----------
+    poke_team_hex : str
+        The hex string of the Pokemon team.
+
+    Returns
+    -------
+    str
+    """
+    poke_team_dict = []
+
+    for poke_hex in poke_team_hex.split("-"):
+        poke_team_dict.append(convert_pokemon_hex_to_dictionary(poke_hex))
+
+    final_pokepaste_string = ""
+
+    for team_member in poke_team_dict:
+        regular_name = format_pokemon_name(team_member["pokemon_name"], team_member["form_name"])
+        pokepaste_compliant_name = regular_name.replace(" ", "-").replace("(","").replace(")","")
+
+        if team_member["shadow_purified"] == "Shadow":
+            pokepaste_compliant_name += "-Shadow"
+        elif team_member["shadow_purified"] == "Purified":
+            pokepaste_compliant_name += "-Purified"
+
+        if team_member["best_buddy"]:
+            pokepaste_compliant_name += " @ Best Buddy Ribbon"
+
+        combat_power = team_member["combat_power"]
+
+        fast_move = format_move_name(team_member["fast_move_name"])
+        first_charged_move = format_move_name(team_member["first_charged_move_name"])
+        second_charged_move = format_move_name(team_member["second_charged_move_name"])
+
+        final_pokepaste_string += f"{pokepaste_compliant_name}\nLevel: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n\n"
+
+    return final_pokepaste_string
+
+
 if __name__ == "__main__":
     hex_string = convert_raw_pokemon_to_hex(493, 1, False, 0, 236, 31, 0, 1500)
 

@@ -2,7 +2,7 @@ import json
 
 import streamlit as st
 
-from parser import convert_pokemon_hex_to_dictionary, format_pokemon_name, format_move_name, read_pokemon_data
+from parser import convert_pokemon_hex_to_dictionary, format_pokemon_name, format_move_name, read_pokemon_data, pokepaste_stringify
 from images import get_image_asset
 
 
@@ -72,9 +72,9 @@ else:
 
     left, right = st.columns(2)
     with left:
-        for team in teams[:3]:
+        for entry in teams[:3]:
             try:
-                poke_dict = convert_pokemon_hex_to_dictionary(team)
+                poke_dict = convert_pokemon_hex_to_dictionary(entry)
             except:
                 st.write("Invalid team.")
                 break
@@ -90,9 +90,9 @@ else:
             st.divider()
 
     with right:
-        for team in teams[3:]:
+        for entry in teams[3:]:
             try:
-                poke_dict = convert_pokemon_hex_to_dictionary(team)
+                poke_dict = convert_pokemon_hex_to_dictionary(entry)
             except:
                 st.write("Invalid team.")
                 break
@@ -107,3 +107,7 @@ else:
                 render_pokemon_images(st, poke_dict, sub_left, sub_middle)
 
             st.divider()
+
+    st.divider()
+    st.write("[Pokepaste](https://pokepast.es) format:")
+    st.code(pokepaste_stringify(team), language="python")
