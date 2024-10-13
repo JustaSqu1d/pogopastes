@@ -62,6 +62,7 @@ def convert_pokemon_hex_to_dictionary(hex_string: str) -> dict:
         "second_charged_move_name": second_charged_move_name,
     }
 
+
 def convert_pokemon_name_to_id(pokemon_name: str) -> int:
     """
     Convert the Pokemon name to an ID.
@@ -100,6 +101,7 @@ def convert_move_name_to_id(move_name: str) -> int:
     for move in moves_data:
         if moves_data[move]["uniqueId"] == move_name or moves_data[move]["uniqueId"] == move_name + "_FAST":
             return moves_data[move]["uuid"]
+
 
 def convert_form_name_to_id(pokemon_id: int, form_name: str) -> int:
     """
@@ -143,6 +145,7 @@ def convert_shadow_purified_to_id(shadow_purified: str) -> int:
     elif shadow_purified.lower() == "purified":
         return 2
 
+
 def convert_pokemon_to_hex(species_name, cp, shadow, fast_move, charge_move1, charge_move2):
     """
     Convert the Pokemon data to a hex string.
@@ -180,9 +183,12 @@ def convert_pokemon_to_hex(species_name, cp, shadow, fast_move, charge_move1, ch
     first_charged_move_id = convert_move_name_to_id(first_charged_move_name)
     second_charged_move_id = convert_move_name_to_id(second_charged_move_name)
 
-    return convert_raw_pokemon_to_hex(pokemon_id, form_id, False, shadow_purified, fast_move_id, first_charged_move_id, second_charged_move_id, cp)
+    return convert_raw_pokemon_to_hex(pokemon_id, form_id, False, shadow_purified, fast_move_id, first_charged_move_id,
+                                      second_charged_move_id, cp)
 
-def convert_raw_pokemon_to_hex(pokemon_id, form_id, best_buddy, shadow_purified, fast_move_id, first_charged_move_id, second_charged_move_id, combat_power) -> str:
+
+def convert_raw_pokemon_to_hex(pokemon_id, form_id, best_buddy, shadow_purified, fast_move_id, first_charged_move_id,
+                               second_charged_move_id, combat_power) -> str:
     """
     Convert the Pokemon data to a hex string.
 
@@ -222,6 +228,7 @@ def convert_raw_pokemon_to_hex(pokemon_id, form_id, best_buddy, shadow_purified,
 
     return hex(int(binary_string, 2))
 
+
 def read_pokemon_data() -> dict:
     """
     Read the Pokemon data from the file.
@@ -234,6 +241,7 @@ def read_pokemon_data() -> dict:
     with open(path + "/gamedata/pokemon.json", "r") as f:
         return json.load(f)
 
+
 def read_moves_data() -> dict:
     """
     Read the moves data from the file.
@@ -245,6 +253,7 @@ def read_moves_data() -> dict:
     path = os.path.dirname(__file__)
     with open(path + "/gamedata/moves.json", "r") as f:
         return json.load(f)
+
 
 def get_pokemon_by_id(pokemon_id: int, form_id: int = -1) -> dict:
     """
@@ -296,6 +305,7 @@ def get_move_by_id(move_id: int) -> dict | None:
 
     return {}
 
+
 def format_pokemon_name(pokemon_name: str, form_name: str) -> str:
     """
     Format the Pokemon name.
@@ -317,6 +327,7 @@ def format_pokemon_name(pokemon_name: str, form_name: str) -> str:
         return f"{new_pokemon_name} ({new_form_name})"
     else:
         return new_pokemon_name
+
 
 def unformat_pokemon_name(pokemon_name: str) -> tuple[str, str]:
     """
@@ -342,6 +353,7 @@ def unformat_pokemon_name(pokemon_name: str) -> tuple[str, str]:
         return new_pokemon_name.strip().upper(), form_name.strip().upper()
     else:
         return pokemon_name.upper(), ""
+
 
 def format_move_name(move_name: str | None) -> str | None:
     """
@@ -374,6 +386,7 @@ def format_move_name(move_name: str | None) -> str | None:
         return "Mud-Slap"
     else:
         return move_name.replace("_FAST", "").replace("_", " ").title()
+
 
 def unformat_move_name(move_name: str) -> str:
     """
@@ -426,7 +439,13 @@ def pokepaste_stringify(poke_team_hex) -> str:
 
     for team_member in poke_team_dict:
         regular_name = format_pokemon_name(team_member["pokemon_name"], team_member["form_name"])
-        pokepaste_compliant_name = regular_name.replace(" ", "-").replace("(","").replace(")","")
+        pokepaste_compliant_name = (regular_name
+                                    .replace(" ", "-")
+                                    .replace("(", "")
+                                    .replace(")", "")
+                                    .replace("Alolan", "Alola")
+                                    .replace("Galarian", "Galar")
+                                    .replace("Hisuian", "Hisui"))
 
         if team_member["shadow_purified"] == "Shadow":
             pokepaste_compliant_name += "-Shadow"
@@ -442,7 +461,7 @@ def pokepaste_stringify(poke_team_hex) -> str:
         first_charged_move = format_move_name(team_member["first_charged_move_name"])
         second_charged_move = format_move_name(team_member["second_charged_move_name"])
 
-        final_pokepaste_string += f"{pokepaste_compliant_name}\nAbility: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n\n"
+        final_pokepaste_string += f"{pokepaste_compliant_name}\nAbility: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n- Protect"
 
     return final_pokepaste_string
 

@@ -6,7 +6,6 @@ POKEMON_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/EternaCa
 MOVES_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/EternaCalc/refs/heads/master/pokemon/game_data/moves.json"
 
 if __name__ == "__main__":
-
     # read them to files
     pokemon_gamemasters = requests.get(POKEMON_GAMEMASTERS_URL).json()
     moves_gamemasters = requests.get(MOVES_GAMEMASTERS_URL).json()

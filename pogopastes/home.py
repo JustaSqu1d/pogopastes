@@ -2,6 +2,7 @@ import json
 import os
 
 import streamlit as st
+
 from images import get_pokemon_image
 from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex, pokepaste_stringify
 
@@ -28,7 +29,6 @@ with open(path + "/gamedata/moves.json", "r") as f:
         moves_list.append(format_move_name(moves_gamemasters[move]["uniqueId"]))
 
 moves_list = sorted(moves_list)
-
 
 st.title("Create a team")
 st.write("---")
@@ -218,4 +218,3 @@ if (
 
     st.write("[Pokepaste](https://pokepast.es) format:")
     st.code(pokepaste_stringify("-".join(hexes)), language="python")
-

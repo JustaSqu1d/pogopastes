@@ -1,18 +1,15 @@
-import os
-
-
 def get_pokemon_image(pokemon_species: str) -> str:
     new_pokemon_string = (pokemon_species
                           .lower()
                           .replace(" ", "-")
                           .replace("(", "")
                           .replace(")", "")
-                          .replace("alolan","alola")
+                          .replace("alolan", "alola")
                           .replace("hisuian", "hisui")
                           .replace("galarian", "galar")
                           .replace("--", "-")
                           .replace("mega-x", "megax")
-                          .replace("mega-y","megay")
+                          .replace("mega-y", "megay")
                           )
 
     match new_pokemon_string:
