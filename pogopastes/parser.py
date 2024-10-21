@@ -384,6 +384,14 @@ def format_move_name(move_name: str | None) -> str | None:
         return "Sacred Fire+"
     elif move_name == "MUD_SLAP_FAST":
         return "Mud-Slap"
+    elif move_name == "LOCK_ON_FAST":
+        return "Lock-On"
+    elif move_name == "V_CREATE":
+        return "V-create"
+    elif move_name == "X_SCISSOR":
+        return "X-Scissor"
+    elif move_name == "POWER_UP_PUNCH":
+        return "Power-Up Punch"
     else:
         return move_name.replace("_FAST", "").replace("_", " ").title()
 

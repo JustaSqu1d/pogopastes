@@ -46,7 +46,7 @@ with left:
                                             key="pokemon1_species")
             pokemon1_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon1_cp")
-            pokemon1_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon1_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon1_shadow")
             pokemon1_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon1_fast_move")
@@ -70,7 +70,7 @@ with left:
                                             key="pokemon2_species")
             pokemon2_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon2_cp")
-            pokemon2_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon2_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon2_shadow")
             pokemon2_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon2_fast_move")
@@ -94,7 +94,7 @@ with left:
                                             key="pokemon3_species")
             pokemon3_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon3_cp")
-            pokemon3_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon3_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon3_shadow")
             pokemon3_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon3_fast_move")
@@ -117,7 +117,7 @@ with right:
                                             key="pokemon4_species")
             pokemon4_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon4_cp")
-            pokemon4_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon4_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon4_shadow")
             pokemon4_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon4_fast_move")
@@ -141,7 +141,7 @@ with right:
                                             key="pokemon5_species")
             pokemon5_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon5_cp")
-            pokemon5_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon5_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon5_shadow")
             pokemon5_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon5_fast_move")
@@ -166,7 +166,7 @@ with right:
                                             key="pokemon6_species")
             pokemon6_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
                                           key="pokemon6_cp")
-            pokemon6_shadow = st.selectbox("Is it a shadow?", placeholder="Normal, Shadow, or Purified?",
+            pokemon6_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon6_shadow")
             pokemon6_fast_move = st.selectbox("Fast Move", options=moves_list, index=None, placeholder="Select a move",
                                               key="pokemon6_fast_move")
