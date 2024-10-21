@@ -461,7 +461,7 @@ def pokepaste_stringify(poke_team_hex) -> str:
         first_charged_move = format_move_name(team_member["first_charged_move_name"])
         second_charged_move = format_move_name(team_member["second_charged_move_name"])
 
-        final_pokepaste_string += f"{pokepaste_compliant_name}\nCP: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n"
+        final_pokepaste_string += f"{pokepaste_compliant_name}\nCP: {combat_power}\n- {fast_move}\n- {first_charged_move}\n- {second_charged_move}\n\n"
 
     return final_pokepaste_string
 
