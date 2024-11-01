@@ -4909,7 +4909,7 @@
             "POKEMON_TYPE_PSYCHIC",
             "POKEMON_TYPE_FAIRY"
         ],
-        "display_name": "Mr Mime",
+        "display_name": "Mr. Mime",
         "showdown_id": "mrmime",
         "base_attack": 192,
         "base_defense": 205,
@@ -4939,7 +4939,7 @@
             "POKEMON_TYPE_ICE",
             "POKEMON_TYPE_PSYCHIC"
         ],
-        "display_name": "Mr Mime Galarian",
+        "display_name": "Mr. Mime Galarian",
         "showdown_id": "mrmime-galar",
         "base_attack": 183,
         "base_defense": 169,

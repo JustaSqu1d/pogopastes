@@ -170,6 +170,7 @@ def convert_pokemon_to_hex(species_name, cp, shadow, fast_move, charge_move1, ch
     str
     """
     pokemon_name, species_name = unformat_pokemon_name(species_name)
+    print(species_name, pokemon_name, species_name)
 
     pokemon_id = convert_pokemon_name_to_id(pokemon_name)
     form_id = convert_form_name_to_id(pokemon_id, species_name) if species_name else 0
@@ -215,6 +216,8 @@ def convert_raw_pokemon_to_hex(pokemon_id, form_id, best_buddy, shadow_purified,
     -------
     str
     """
+    if not form_id:
+        form_id = 0
     binary_string = ''.join([
         format(pokemon_id, '012b'),
         format(form_id, '05b'),
@@ -348,6 +351,9 @@ def unformat_pokemon_name(pokemon_name: str) -> tuple[str, str]:
 
         if "primal" in form_name.lower():
             form_name = "PRIMAL_" + form_name.split("_")[0]
+
+        if "mega" in form_name.lower():
+            form_name = "MEGA_" + form_name.split("_")[0]
 
         new_pokemon_name = new_pokemon_name.split("_")[0]
         return new_pokemon_name.strip().upper(), form_name.strip().upper()

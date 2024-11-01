@@ -3,6 +3,8 @@ import os
 
 import streamlit as st
 
+from st_copy_to_clipboard import st_copy_to_clipboard
+
 from images import get_pokemon_image
 from parser import format_pokemon_name, format_move_name, convert_pokemon_to_hex, pokepaste_stringify
 
@@ -213,8 +215,9 @@ if (
     url_string = "https://pgpaste.squ1d.dev/team?id=" + "-".join(hexes)
     url_string = url_string.replace("0x", "")
 
-    st.write("Share link:")
-    st.code(url_string, language="js")
+    st_copy_to_clipboard(text=url_string, before_copy_label="Copy share link", after_copy_label="Link copied!")
 
-    st.write("[Pokepaste](https://pokepast.es) format:")
-    st.code(pokepaste_stringify("-".join(hexes)), language="python")
+    pokepaste_string = pokepaste_stringify("-".join(hexes))
+    st_copy_to_clipboard(text=pokepaste_string, before_copy_label="Copy Pokepaste text", after_copy_label="Pokepaste copied!")
+
+    st.code(pokepaste_string, language="python")
