@@ -2,7 +2,6 @@ import json
 import os
 
 import streamlit as st
-
 from st_copy_to_clipboard import st_copy_to_clipboard
 
 from images import get_pokemon_image
@@ -46,7 +45,7 @@ with left:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon1_species")
-            pokemon1_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon1_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon1_cp")
             pokemon1_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon1_shadow")
@@ -70,7 +69,7 @@ with left:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon2_species")
-            pokemon2_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon2_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon2_cp")
             pokemon2_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon2_shadow")
@@ -94,7 +93,7 @@ with left:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon3_species")
-            pokemon3_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon3_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon3_cp")
             pokemon3_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon3_shadow")
@@ -117,7 +116,7 @@ with right:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon4_species")
-            pokemon4_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon4_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon4_cp")
             pokemon4_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon4_shadow")
@@ -141,7 +140,7 @@ with right:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon5_species")
-            pokemon5_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon5_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon5_cp")
             pokemon5_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon5_shadow")
@@ -166,7 +165,7 @@ with right:
                                             index=None,
                                             placeholder="Select a Pokémon",
                                             key="pokemon6_species")
-            pokemon6_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, step=1,
+            pokemon6_cp = st.number_input("CP", placeholder="CP", min_value=0, max_value=10000, value=1500, step=1,
                                           key="pokemon6_cp")
             pokemon6_shadow = st.selectbox("Is it a shadow/purified?", placeholder="Normal, Shadow, or Purified?",
                                            options=["Normal", "Shadow", "Purified"], index=0, key="pokemon6_shadow")
@@ -218,6 +217,7 @@ if (
     st_copy_to_clipboard(text=url_string, before_copy_label="Copy share link", after_copy_label="Link copied!")
 
     pokepaste_string = pokepaste_stringify("-".join(hexes))
-    st_copy_to_clipboard(text=pokepaste_string, before_copy_label="Copy Pokepaste text", after_copy_label="Pokepaste copied!")
+    st_copy_to_clipboard(text=pokepaste_string, before_copy_label="Copy Pokepaste text",
+                         after_copy_label="Pokepaste copied!")
 
     st.code(pokepaste_string, language="python")
