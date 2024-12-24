@@ -3280,6 +3280,20 @@
         "displayName": "Rage Fist",
         "usageType": "charge"
     },
+    "FLOWER_TRICK": {
+        "uniqueId": "FLOWER_TRICK",
+        "type": "POKEMON_TYPE_GHOST",
+        "power": 30.0,
+        "energyDelta": 35.0,
+        "buffs": {
+            "attackerAttackStatStageChange": 1,
+            "buffActivationChance": 1.0
+        },
+        "turns": 0,
+        "uuid": 465,
+        "displayName": "Flower Trick",
+        "usageType": "charge"
+    },
     "HIDDEN_POWER_BUG": {
         "uniqueId": "HIDDEN_POWER_BUG",
         "type": "POKEMON_TYPE_BUG",
