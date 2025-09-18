@@ -2,8 +2,8 @@ import json
 
 import requests
 
-POKEMON_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/EternaCalc/refs/heads/master/pokemon/game_data/pokemon.json"
-MOVES_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/EternaCalc/refs/heads/master/pokemon/game_data/moves.json"
+POKEMON_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/celesteela-bot/refs/heads/master/celesteela-bot/gamedata/pokemon.json"
+MOVES_GAMEMASTERS_URL = "https://raw.githubusercontent.com/JustaSqu1d/celesteela-bot/refs/heads/master/celesteela-bot/gamedata/moves.json"
 
 if __name__ == "__main__":
     # read them to files
